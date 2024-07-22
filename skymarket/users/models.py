@@ -14,7 +14,7 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50, verbose_name=_('first name'))
     last_name = models.CharField(max_length=50, verbose_name=_('last name'))
     phone = PhoneNumberField(verbose_name=_('phone number'))
-    email = models.EmailField(verbose_name=_('e-mail'))
+    email = models.EmailField(verbose_name=_('e-mail'), unique=True)
     role = models.CharField(max_length=30, choices=[(UserRoles.USER, 'User'), (UserRoles.ADMIN, 'Administrator')]
                             , verbose_name=_('role'))
     image = models.ImageField(upload_to='users/', blank=True, null=True, verbose_name=_('avatar'))

@@ -28,16 +28,14 @@ services:
     restart: always
     env_file:
       - ../skymarket/.env
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
-    ports:
-      - "8080:80"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
 
   nginx:
     image: nginx:latest
     ports:
-      - "80:8000"
+      - "8000:8000"
       - "3000:3000"
     volumes:
       - ../skymarket/django_static/:/usr/share/nginx/html/django_static/
