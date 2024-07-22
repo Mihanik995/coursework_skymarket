@@ -11,7 +11,7 @@ class Ad(models.Model):
     price = models.PositiveIntegerField()
     description = models.CharField(max_length=1000, **NULLABLE)
     image = models.ImageField(upload_to='ads/', **NULLABLE)
-    author = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    author = models.ForeignKey(to=User, on_delete=models.CASCADE, **NULLABLE)
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -24,8 +24,8 @@ class Ad(models.Model):
 
 class Comment(models.Model):
     text = models.TextField()
-    author = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    ad = models.ForeignKey(to=Ad, on_delete=models.CASCADE)
+    author = models.ForeignKey(to=User, on_delete=models.CASCADE, **NULLABLE)
+    ad = models.ForeignKey(to=Ad, on_delete=models.CASCADE, **NULLABLE)
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
