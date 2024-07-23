@@ -15,24 +15,24 @@ class CommentSerializer(serializers.ModelSerializer):
                   "ad_id", "author_image")
 
     def get_author_id(self, instance: Comment):
-        return instance.author.pk if instance.author else None
+        return instance.author.pk
 
     def get_author_first_name(self, instance: Comment):
-        return instance.author.first_name if instance.author else None
+        return instance.author.first_name
 
     def get_author_last_name(self, instance: Comment):
-        return instance.author.last_name if instance.author else None
+        return instance.author.last_name
 
     def get_author_image(self, instance: Comment):
-        return instance.author.image if instance.author else None
+        return instance.author.image if instance.author.image else None
 
     def get_ad_id(self, instance: Comment):
-        return instance.ad.pk if instance.ad else None
+        return instance.ad.pk
 
     def create(self, validated_data):
         request = self.context.get('request')
 
-        # validated_data['author'] = request.user
+        validated_data['author'] = request.user
         validated_data['ad_id'] = request.parser_context.get('kwargs').get('ad_pk')
 
         new_comment = Comment.objects.create(**validated_data)
@@ -58,16 +58,16 @@ class AdDetailSerializer(serializers.ModelSerializer):
                   "author_last_name", "author_id")
 
     def get_phone(self, instance: Ad):
-        return instance.author.phone if instance.author else None
+        return str(instance.author.phone)
 
     def get_author_first_name(self, instance: Ad):
-        return instance.author.first_name if instance.author else None
+        return instance.author.first_name
 
     def get_author_last_name(self, instance: Ad):
-        return instance.author.last_name if instance.author else None
+        return instance.author.last_name
 
     def get_author_id(self, instance: Ad):
-        return instance.author.pk if instance.author else None
+        return instance.author.pk
 
     def create(self, validated_data):
         validated_data['author'] = self.context.get('request').user
