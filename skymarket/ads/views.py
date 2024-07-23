@@ -49,4 +49,4 @@ class MyAdListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Ad.objects.filter(self.request.user.pk)
+        return Ad.objects.filter(author=self.request.user.pk)
