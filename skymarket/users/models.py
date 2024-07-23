@@ -16,7 +16,7 @@ class User(AbstractBaseUser):
     phone = PhoneNumberField(verbose_name=_('phone number'))
     email = models.EmailField(verbose_name=_('e-mail'), unique=True)
     role = models.CharField(max_length=30, choices=[(UserRoles.USER, 'User'), (UserRoles.ADMIN, 'Administrator')]
-                            , verbose_name=_('role'))
+                            , verbose_name=_('role'), default=UserRoles.USER)
     image = models.ImageField(upload_to='users/', blank=True, null=True, verbose_name=_('avatar'))
 
     USERNAME_FIELD = 'email'

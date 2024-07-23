@@ -47,6 +47,8 @@ INSTALLED_APPS = [
 
     "drf_yasg",
     "corsheaders",
+
+    'rest_framework.authtoken',
     "djoser",
 ]
 
@@ -83,18 +85,14 @@ WSGI_APPLICATION = "skymarket.wsgi.application"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]
-}
-
-DJOSER = {
-    'SERIALIZERS': {
-        'user_create': 'users.serializers.UserRegistrationSerializer'
-    },
-    'LOGIN_FIELD': 'email'
 }
 
 # Database
