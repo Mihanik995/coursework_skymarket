@@ -26,7 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DEBUG', False))
+# DEBUG = bool(os.environ.get('DEBUG', False))
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -104,8 +105,10 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST_LOCAL') if DEBUG else os.getenv('POSTGRES_HOST'),
-        'PORT': os.getenv('POSTGRES_PORT_LOCAL') if DEBUG else os.getenv('POSTGRES_PORT')
+        # 'HOST': os.getenv('POSTGRES_HOST_LOCAL') if DEBUG else os.getenv('POSTGRES_HOST'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        # 'PORT': os.getenv('POSTGRES_PORT_LOCAL') if DEBUG else os.getenv('POSTGRES_PORT')
+        'PORT': os.getenv('POSTGRES_PORT')
     }
 }
 

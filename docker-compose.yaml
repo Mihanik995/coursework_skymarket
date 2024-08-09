@@ -6,8 +6,8 @@ services:
     restart: always
     env_file:
       - .env
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data/pgdata
+#    volumes:
+#      - ./pgdata:/var/lib/postgresql/data/pgdata
     ports:
       - '5432:5432'
     healthcheck:
@@ -49,6 +49,6 @@ services:
 #      - frontend
 #      - backend
 
-volumes:
-  postgres_data:
+#volumes:
+#  postgres_data:
 #  frontend:
